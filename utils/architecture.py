@@ -1,19 +1,7 @@
-import numpy as np
-import datetime
 import torch
+import numpy as np
 import matplotlib.pyplot as plt
-from torch.utils.data import Dataset, TensorDataset, DataLoader
-from torch.utils.data.dataset import random_split
-import torch.optim as optim
-import torch.nn as nn
-from sklearn.datasets import make_moons
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, roc_curve, precision_recall_curve, auc
-from matplotlib.colors import ListedColormap
-from sklearn.metrics import accuracy_score
 
-%matplotlib inline
 plt.style.use('fivethirtyeight')
 
 
@@ -198,7 +186,7 @@ class Architecture(object):
         return y_hat_tensor.detach().cpu().numpy()
 
     def plot_losses(self):
-        fig = plt.figure(figsize=(10, 4))
+        fig = plt.figure(figsize=(16, 8))
         plt.plot(self.losses, label='Training Loss', c='b')
         plt.plot(self.val_losses, label='Validation Loss', c='r')
         plt.yscale('log')

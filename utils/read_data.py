@@ -27,6 +27,32 @@ def read_data(path: str = '../dataset/') -> pd.DataFrame:
     return pd.concat(dfs, ignore_index=True)
 
 
+def get_train_data(path: str = '../notebooks/df_full_train.csv') -> pd.DataFrame:
+    """
+    Read and return the training data from the specified path.
+    
+    Args:
+        path (str): The path to the dataset.
+    
+    Returns:
+        pd.DataFrame: The training data as a DataFrame.
+    """
+    return pd.read_csv(path)
+
+
+def get_test_data(path: str = '../notebooks/df_test.csv') -> pd.DataFrame:
+    """
+    Read and return the test data from the specified path.
+    
+    Args:
+        path (str): The path to the dataset.
+    
+    Returns:
+        pd.DataFrame: The test data as a DataFrame.
+    """
+    return pd.read_csv(path)
+
+
 if __name__ == "__main__":
     path = 'dataset/'
     
