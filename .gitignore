@@ -177,3 +177,6 @@ pyrightconfig.json
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
 
+notebooks/df_full_train.csv
+notebooks/df_test.csv
+*.html
