@@ -1,38 +1,105 @@
 # Model Card
 
-Model cards are a succinct approach for documenting the creation, use, and shortcomings of a model. The idea is to write a documentation such that a non-expert can understand the model card's contents. For additional information see the Model Card paper: https://arxiv.org/pdf/1810.03993.pdf
+Credit card fraud happens when an individual takes or utilizes a credit card's details without the owner's consent. To fight and avert fraudulent transactions, credit card firms and financial organizations have established several measures. The majority of contemporary solutions utilize artificial intelligence (AI) and machine learning (ML). 
 
-Credit card fraud occurs when someone steals or uses a credit card's information without the cardholder's permission. To combat and prevent fraudulent transactions, credit card companies and financial institutions have implemented various measures. Most modern solutions leverage artificial intelligence (AI) and machine learning (ML).
+**The aim of this project is to replicate a service utilized by one of these organizations to forecast if a transaction is fraudulent.** The service takes in all the details of a credit card purchase made by a client and provides as output the likelihood of the purchase being fraudulent, along with a suggestion on whether it should be marked as fraud. The feedback from this service can help avoid charging customers for items they did not buy. 
 
-The purpose of this project is to emulate a service used by one of these institutions to predict whether a purchase is fraudulent. The service receives as input all the information about a purchase made with a credit card by a client and returns as output the probability that the purchase is fraudulent, as well as a recommendation on whether it should be flagged as fraud. The response from this service can be used to prevent customers from being charged for items they did not purchase
+<details>
+<summary>Model card explanation</summary>
+    Model cards are a succinct approach for documenting the creation, use, and shortcomings of a model. The idea is to write a documentation such that a non-expert can understand the model card's contents. For additional information see the Model Card paper: https://arxiv.org/pdf/1810.03993.pdf.
+</details>
+
 
 ## Model Details
 
-@Miguel-mmf created the model. A complete data pipeline was built using DVC and Scikit-Learn to train a XGBoost model. For the sake of understanding, a simple hyperparameter-tuning was conducted, and the hyperparameters values adopted in the train are described in a yaml file.
+[@Miguel-mmf](https://github.com/Miguel-mmf) created the model using a defined architecture shared by [ivanowitchm]([https://](https://github.com/ivanovitchm/PPGEEC2318/blob/main/lessons/week05/week05c.ipynb)). I was able to use PyTorch, Scikit-Learn and Python programming language to set up and train a logistic regression model. So far, no simple tuning of the hyperparameters has been carried out.
 
 ## Intended Use
+
+This model is being used as a proof of concept for the first project in the Machine Learning programme at the Federal University of Rio Grande do Norte's [PPGEEC](https://sigaa.ufrn.br/sigaa/public/programa/portal.jsf?id=103).
 
 
 ## Training Data
 
-The dataset used in this project is based on individual income in the United States. The data is from the 1994 census, and contains information on an individual's marital status, age, type of work, and more. The target column, or what we want to predict, is whether individuals make less than or equal to 50k a year, or more than 50k a year.
+The dataset used in this project is based on the original csv was downloaded from: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud.
+After the EDA stage of the data pipeline, it was noted that the training data is imbalanced when considered the target variable and some features. The target variable can only have two values, 1 or 0, to indicate the occurrence of fraud or not, respectively.
 
-You can download the data from the University of California, Irvine's website.
+<details>
+<summary>Distribution per feature</summary>
+    <img src="images/eda_distribution_per_features.png">
+</details>
 
-After the EDA stage of the data pipeline, it was noted that the training data is imbalanced when considered the target variable and some features (sex, race and workclass.
+<details>
+<summary>Pearson correlation with class</summary>
+    <img src="images/eda_pearson_correlation_heatmap.png">
+</details>
+
+<details>
+<summary>ROC curve for each feature</summary>
+    <img src="images/eda_roc_curve_features.png">
+</details>
 
 
 ## Evaluating Data
 
-The dataset under study is split into Train and Test during the Segregate stage of the data pipeline. 70% of the clean data is used to Train and the remaining 30% to Test. Additionally, 30% of the Train data is used for validation purposes (hyperparameter-tuning). This configuration is done in a yaml file.
+The dataset under study is split into Train and Test during the [Exploratory Data Analysis](eda.ipynb) stage. 80% of the clean data is used to Train and the remaining 20% to Test.
+
+<details>
+<summary>Loss curves</summary>
+    <img src="images/train_losses.png">
+</details>
+
+<details>
+<summary>Confusion matrix</summary>
+    <img src="images/train_confusion_matrix.png">
+</details>
+
+<details>
+<summary>ROC curve for validation data</summary>
+    <img src="images/train_val_roc_curve.png">
+</details>
+
+<details>
+<summary>TPR and FPR vc Tresholds</summary>
+    <img src="images/train_tpr_fpr_vs_thresholds.png">
+</details>
+
 
 ## Metrics
 
-In order to follow the performance of machine learning experiments, the project marked certains stage outputs of the data pipeline as metrics. The metrics adopted are: accuracy, f1, precision, recall.
+In order to follow the performance of machine learning experiments, the project marked certains stage outputs of the data pipeline as metrics. The metrics adopted are: 
+* [**Accuracy**](https://scikit-learn.org/stable/modules/model_evaluation.html)
+  $$
+  \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+  $$
+  where $TP$ = True Positives, $TN$ = True Negatives, $FP$ = False Positives, and $FN$ = False Negatives.
+
+* [**f1**](https://scikit-learn.org/stable/modules/model_evaluation.html)
+$$
+\text{F1} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+$$
+
+* [**Precision**](https://scikit-learn.org/stable/modules/model_evaluation.html)
+    $$
+    \text{Precision} = \frac{TP}{TP + FP}
+    $$
+
+* [**Recall**](https://scikit-learn.org/stable/modules/model_evaluation.html)
+    $$
+    \text{Recall} = \frac{TP}{TP + FN}
+    $$
+
 
 The follow results will be shown:
 
-table
+| Dataset | Threshold | Accuracy | F1 Score | Precision | Recall |
+|-----------|-----------|----------|----------|-----------|--------|
+| Train     |   0.05    |  0.9000  |  0.7757  |   0.7524  | 0.8005 |
+| Test      |   0.05    |  0.9058  |  0.8241  |   0.8367  | 0.8119 |
+
+**Threshold explanation:**  
+The threshold value determines the cutoff for classifying predictions as positive or negative. Different thresholds can impact the balance between precision and recall. The chosen threshold (0.50) was selected based on the evaluation of metrics for each threshold value, aiming to achieve a good trade-off between accuracy, precision, recall, and F1 score.
+
 
 ## Ethical Considerations
 
@@ -41,4 +108,15 @@ We may be tempted to claim that this dataset contains the only attributes capabl
 
 ## Caveats and Recommendations
 
-It should be noted that the model trained in this project was used only for validation of a complete data pipeline. It is notary that some important issues related to dataset imbalances exist, and adequate techniques need to be adopted in order to balance it.
+It should be noted that the model trained in this project was used only for validation. It is notary that some important issues related to dataset imbalances exist, and adequate techniques need to be adopted in order to balance it.
+
+
+
+<div align="center">
+
+<img src="https://avatars.githubusercontent.com/u/69444221?v=4" alt="Miguel-mmf" width="80" style="border-radius: 50%; display: block; margin: 0 auto;"/>
+
+**Miguel Marques**  
+[GitHub](https://github.com/Miguel-mmf) • [LinkedIn](https://www.linkedin.com/in/miguelmf08) • [Gmail](miguel.ferreira@estudante.cear.ufpb.br) • [Gmail](miguel.ferreira.111@ufrn.edu.br)
+
+</div>
