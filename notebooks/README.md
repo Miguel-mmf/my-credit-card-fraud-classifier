@@ -69,26 +69,25 @@ The dataset under study is split into Train and Test during the [Exploratory Dat
 
 In order to follow the performance of machine learning experiments, the project marked certains stage outputs of the data pipeline as metrics. The metrics adopted are: 
 * [**Accuracy**](https://scikit-learn.org/stable/modules/model_evaluation.html)
-  $$
-  \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
-  $$
-  where $TP$ = True Positives, $TN$ = True Negatives, $FP$ = False Positives, and $FN$ = False Negatives.
+<p align="center">
+$\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}$
+</p>
+where TP = True Positives, TN = True Negatives, FP = False Positives, and FN = False Negatives.
 
 * [**f1**](https://scikit-learn.org/stable/modules/model_evaluation.html)
-$$
-\text{F1} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
-$$
+<p align="center">
+$\text{F1} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$
+</p>
 
 * [**Precision**](https://scikit-learn.org/stable/modules/model_evaluation.html)
-    $$
-    \text{Precision} = \frac{TP}{TP + FP}
-    $$
+<p align="center">
+$\text{Precision} = \frac{TP}{TP + FP}$
+</p>
 
 * [**Recall**](https://scikit-learn.org/stable/modules/model_evaluation.html)
-    $$
-    \text{Recall} = \frac{TP}{TP + FN}
-    $$
-
+<p align="center">
+$\text{Recall} = \frac{TP}{TP + FN}$
+</p>
 
 The follow results will be shown:
 
@@ -113,10 +112,8 @@ It should be noted that the model trained in this project was used only for vali
 
 
 <div align="center">
-
 <img src="https://avatars.githubusercontent.com/u/69444221?v=4" alt="Miguel-mmf" width="80" style="border-radius: 50%; display: block; margin: 0 auto;"/>
 
 **Miguel Marques**  
 [GitHub](https://github.com/Miguel-mmf) • [LinkedIn](https://www.linkedin.com/in/miguelmf08) • [Gmail](miguel.ferreira@estudante.cear.ufpb.br) • [Gmail](miguel.ferreira.111@ufrn.edu.br)
-
 </div>
