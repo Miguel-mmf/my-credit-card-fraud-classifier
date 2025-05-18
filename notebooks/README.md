@@ -97,7 +97,7 @@ The follow results will be shown:
 | Test      |   0.05    |  0.9058  |  0.8241  |   0.8367  | 0.8119 |
 
 **Threshold explanation:**  
-The threshold value determines the cutoff for classifying predictions as positive or negative. Different thresholds can impact the balance between precision and recall. The chosen threshold (0.50) was selected based on the evaluation of metrics for each threshold value, aiming to achieve a good trade-off between accuracy, precision, recall, and F1 score.
+The threshold value determines the cutoff for classifying predictions as positive or negative. Different thresholds can impact the balance between precision and recall. The chosen threshold (0.05) was selected based on the evaluation of metrics for each threshold value, aiming to achieve a good trade-off between accuracy, precision, recall, and F1 score.
 
 
 ## Ethical Considerations

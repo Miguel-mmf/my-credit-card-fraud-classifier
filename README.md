@@ -1,26 +1,53 @@
 # Project overview
-___
 
 It is important that credit card companies are able to recognize fraudulent credit card transactions so that customers are not charged for items that they did not purchase.
 
-Credit card fraud occurs when someone steals or uses a credit card's information without the cardholder's permission. To combat and prevent fraudulent transactions, credit card companies and financial institutions have implemented various measures. Most modern solutions leverage artificial intelligence (AI) and machine learning (ML).
-
-The purpose of this project is to emulate a service used by one of these institutions to predict whether a purchase is fraudulent. The service receives as input all the information about a purchase made with a credit card by a client and returns as output the probability that the purchase is fraudulent, as well as a recommendation on whether it should be flagged as fraud. The response from this service can be used to prevent customers from being charged for items they did not purchase
+**The aim of this project is to replicate a service utilized by one of these organizations to forecast if a transaction is fraudulent.** The service takes in all the details of a credit card purchase made by a client and provides as output the likelihood of the purchase being fraudulent, along with a suggestion on whether it should be marked as fraud. The feedback from this service can help avoid charging customers for items they did not buy. 
 
 ## Environment setup
+
+To configure the virtual environment, follow the steps below:
+
+1. Clone the repository
+2. [Install UV](https://docs.astral.sh/uv/getting-started/installation/)
+3. [Install dependencies using UV](https://docs.astral.sh/uv/concepts/projects/)
+
+
+### **Requirements:**
+- Python 3.12+
+- UV
+
 
 
 ## Data
 
-The dataset contains transactions made by credit cards in September 2013 by European cardholders. This dataset presents transactions that occurred in two days, where we have 492 frauds out of 284,807 transactions. The dataset is highly unbalanced, the positive class (frauds) account for 0.172% of all transactions.
-
-It contains only numerical input variables which are the result of a PCA transformation. Unfortunately, due to confidentiality issues, we cannot provide the original features and more background information about the data. Features V1, V2, … V28 are the principal components obtained with PCA, the only features which have not been transformed with PCA are 'Time' and 'Amount'. Feature 'Time' contains the seconds elapsed between each transaction and the first transaction in the dataset. The feature 'Amount' is the transaction Amount, this feature can be used for example-dependant cost-sensitive learning. Feature 'Class' is the response variable and it takes value 1 in case of fraud and 0 otherwise.
+The dataset used in this project is based on the original csv was downloaded from: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud.
+After the EDA stage of the data pipeline, it was noted that the training data is imbalanced when considered the target variable and some features. The target variable can only have two values, 1 or 0, to indicate the occurrence of fraud or not, respectively.
 
 
 ## Exploratory data analysis
 
+<details open>
+<summary>Distribution per feature</summary>
+    <img src="notebooks/images/eda_distribution_per_features.png">
+</details>
+
+<details>
+<summary>Pearson correlation with class</summary>
+    <img src="notebooks/images/eda_pearson_correlation_heatmap.png">
+</details>
+
+<details>
+<summary>ROC curve for each feature</summary>
+    <img src="notebooks/images/eda_roc_curve_features.png">
+</details>
 
 ## Materials
 
 * [Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
 * [credit_card_fraud_predictor](https://github.com/karinait/credit_card_fraud_predictor?tab=readme-ov-file)
+* [PEEC2318 Machine Learning](https://github.com/ivanovitchm/PPGEEC2318)
+* [mlops_nd_c3](https://github.com/ivanovitchm/mlops_nd_c3/tree/main)
+
+___
+**Feel free to contribute and explore the project!**
